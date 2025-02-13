@@ -1,20 +1,14 @@
-'use client'
-
-import { Suspense, useCallback, useEffect } from "react";
-import { stripe } from "./lib/stripe";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./Router";
+import { ProductContextProvider } from "./context/ProductContext";
 
 function App() {
-    const handleFetch = useCallback(async () => {
-        return await stripe.products.list({
-            expand: ["data.default_price"],
-        });
-    }, []);
-   
-
     return (
-        <>
-            <h1>batata</h1>
-        </>
+        <BrowserRouter>
+            <ProductContextProvider>
+                <Router />
+            </ProductContextProvider>
+        </BrowserRouter>
     );
 }
 
